@@ -3,7 +3,9 @@ import React from 'react'
 export default class FormProfileName extends React.Component {
   static propTypes = {
     setIsValid: React.PropTypes.func.isRequired,
+    setHelpText: React.PropTypes.func.isRequired,
     onSubmit: React.PropTypes.func.isRequired,
+    isOtherUser: React.PropTypes.bool,
     currentValue: React.PropTypes.string,
     className: React.PropTypes.string
   }
@@ -15,6 +17,8 @@ export default class FormProfileName extends React.Component {
 
   componentDidMount() {
     this.validate(this.state.name) // emit isValid update
+    if (this.props.isOtherUser)
+      this.props.setHelpText('You can rename anybody. It will only change for you, but other people will see the name you chose.')
   }
 
   onChangeName(e) {
@@ -31,14 +35,14 @@ export default class FormProfileName extends React.Component {
       emit(false)
       return {
         name: name,
-        error: 'We\'re sorry, your name can only include A-z 0-9 . _ - and cannot have spaces.',
+        error: 'We\'re sorry, names can only include A-z 0-9 . _ - and cannot have spaces.',
         isValid: false
       }
     } else if (name.slice(-1) == '.') {
       emit(false)
       return {
         name: name,
-        error: 'We\'re sorry, your name cannot end with a period.',
+        error: 'We\'re sorry, names cannot end with a period.',
         isValid: false
       }
     } else {
@@ -56,8 +60,11 @@ export default class FormProfileName extends React.Component {
   }
 
   render() {
+    var fallbackCurrentValue = ''
+    if (this.props.isOtherUser)
+      fallbackCurrentValue = 'them'
     return <div className={this.props.className}>
-      <h1><span>What would you like to be called?</span></h1>
+      <h1><span>What would you like {this.props.currentValue||fallbackCurrentValue} to be called?</span></h1>
       <form className="block" onSubmit={e=>e.preventDefault()}>
         <fieldset>
           <div>

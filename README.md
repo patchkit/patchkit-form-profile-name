@@ -13,3 +13,5 @@ const onSubmit = (name, cb) => { console.log('submit', name); cb() }
   <a className="btn highlighted">Click to open</a>
 </ModalBtn>
 ```
+
+If the rename is for another user than the local user, set the `isOtherUser` prop on the form to true.
