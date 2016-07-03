@@ -1,4 +1,5 @@
 import React from 'react'
+import t from 'patchwork-translations'
 
 export default class FormProfileName extends React.Component {
   static propTypes = {
@@ -18,7 +19,7 @@ export default class FormProfileName extends React.Component {
   componentDidMount() {
     this.validate(this.state.name) // emit isValid update
     if (this.props.isOtherUser)
-      this.props.setHelpText('You can rename anybody. It will only change for you, but other people will see the name you chose.')
+      this.props.setHelpText(t('name.RenameHelp'))
   }
 
   onChangeName(e) {
@@ -35,14 +36,14 @@ export default class FormProfileName extends React.Component {
       emit(false)
       return {
         name: name,
-        error: 'We\'re sorry, names can only include A-z 0-9 . _ - and cannot have spaces.',
+        error: t('name.BadNameChars'),
         isValid: false
       }
     } else if (name.slice(-1) == '.') {
       emit(false)
       return {
         name: name,
-        error: 'We\'re sorry, names cannot end with a period.',
+        error: t('name.BadPeriodEnd'),
         isValid: false
       }
     } else {
@@ -62,9 +63,9 @@ export default class FormProfileName extends React.Component {
   render() {
     var fallbackCurrentValue = ''
     if (this.props.isOtherUser)
-      fallbackCurrentValue = 'them'
+      fallbackCurrentValue = t('name.them')
     return <div className={this.props.className}>
-      <h1><span>What would you like {this.props.currentValue||fallbackCurrentValue} to be called?</span></h1>
+      <h1><span>{t('name.whatToCall', {them: this.props.currentValue||fallbackCurrentValue})}</span></h1>
       <form className="block" onSubmit={e=>e.preventDefault()}>
         <fieldset>
           <div>

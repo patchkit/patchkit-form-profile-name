@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/patchkit/patchkit-form-profile-name#readme",
   "dependencies": {
+    "patchwork-translations": "^1.0.0",
     "react": "^0.14.6"
   },
   "devDependencies": {
