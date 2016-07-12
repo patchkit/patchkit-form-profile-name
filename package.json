@@ -1,6 +1,6 @@
 {
   "name": "patchkit-form-profile-name",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Set a user name (modal form)",
   "main": "index.jsx",
   "scripts": {
