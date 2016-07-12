@@ -63,7 +63,7 @@ export default class FormProfileName extends React.Component {
   render() {
     var fallbackCurrentValue = ''
     if (this.props.isOtherUser)
-      fallbackCurrentValue = t('name.them')
+      fallbackCurrentValue = t('name.otherUser')
     return <div className={this.props.className}>
       <h1><span>{t('name.whatToCall', {them: this.props.currentValue||fallbackCurrentValue})}</span></h1>
       <form className="block" onSubmit={e=>e.preventDefault()}>
